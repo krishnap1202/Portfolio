@@ -1,0 +1,1077 @@
+/* Import Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Universal styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Root variables for colors */
+:root {
+    --bg-color: #000000;
+    --second-bg-color: #1a1a1a; /* Slightly lighter black for contrast */
+    --text-color: #f0f0f0; /* Off-white for better readability */
+    --main-color: #7b4bb7; /* Original main color */
+    --accent-color: #9c6edb; /* A slightly lighter shade for accents */
+}
+
+/* Base HTML font size and overflow */
+html {
+    font-size: 62.5%; /* 1rem = 10px */
+    overflow-x: hidden;
+}
+
+/* Body styling */
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6; /* Improved readability */
+}
+
+/* Custom scrollbar styling */
+html::-webkit-scrollbar {
+    width: 0.8rem;
+}
+
+html::-webkit-scrollbar-track {
+    background-color: var(--bg-color);
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+    border-radius: 0.5rem;
+}
+
+/* Header styling */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%; /* Adjusted padding */
+    background: rgba(0, 0, 0, 0.8); /* Slightly more opaque */
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Ensure header is on top */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+/* Logo styling */
+.logo {
+    font-size: 3.2rem; /* Slightly larger */
+    color: var(--main-color);
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.4s ease; /* Smoother transition */
+    text-decoration: none; /* Remove underline */
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Subtle scale effect */
+    color: var(--accent-color);
+}
+
+/* Navbar links styling */
+.navbar a {
+    font-size: 1.6rem; /* Adjusted font size */
+    color: var(--text-color);
+    margin-left: 3.5rem; /* Adjusted spacing */
+    font-weight: 500;
+    transition: 0.3s ease;
+    border-bottom: 3px solid transparent;
+    text-decoration: none; /* Remove underline */
+    padding-bottom: 0.5rem; /* Space for border */
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--main-color);
+    border-bottom: 3px solid var(--main-color);
+}
+
+/* Style for the download button in the navbar */
+.navbar .btn-download {
+    display: inline-flex; /* Use inline-flex for icon and text alignment */
+    align-items: center;
+    padding: 0.8rem 1.8rem; /* Smaller padding for a compact button in navbar */
+    margin-left: 3.5rem; /* Align with other nav links */
+    /* background: var(--main-color); */
+    color: var(--text-color);
+    border: 2px solid var(--main-color);
+    border-radius: 2rem; /* Rounded corners for button look */
+    font-size: 1.4rem; /* Slightly smaller font size */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(123, 75, 183, 0.5);
+}
+
+.navbar .btn-download i {
+    margin-right: 0.8rem; /* Space between icon and text */
+    font-size: 1.8rem; /* Icon size */
+    color: var(--text-color); /* Icon color */
+}
+
+.navbar .btn-download:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-color);
+    transform: scale(1.03);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.navbar .btn-download:hover i {
+    color: var(--bg-color); /* Change icon color on hover */
+}
+
+/* Menu icon styling (for mobile) */
+#menu-icon {
+    font-size: 3.6rem;
+    color: var(--main-color);
+    display: none; /* Hidden by default on desktop */
+    cursor: pointer;
+}
+
+/* Media queries for header and navbar */
+@media (max-width: 991px) {
+    .header {
+        padding: 2rem 5%; /* Adjusted padding for smaller screens */
+    }
+
+    #menu-icon {
+        display: block; /* Show menu icon on smaller screens */
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        right: -100%; /* Hidden off-screen */
+        width: 100%; /* Full width */
+        background-color: var(--second-bg-color);
+        border-top: 0.1rem solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+        transition: 0.3s ease-in-out;
+        display: block; /* Ensure it's block for vertical links */
+        padding: 1rem 0;
+    }
+
+    .navbar.active {
+        right: 0; /* Slide in */
+    }
+
+    .navbar a {
+        display: block; /* Stack links vertically */
+        font-size: 2rem;
+        margin: 1.5rem 2.5rem; /* Adjusted margin */
+        text-align: left;
+        border-bottom: none; /* Remove individual link border */
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+        color: var(--accent-color);
+        border-bottom: none;
+        background-color: rgba(123, 75, 183, 0.1); /* Subtle background on hover */
+        padding: 0.8rem 2.5rem;
+        border-radius: 0.5rem;
+    }
+}
+
+/* Section base styling */
+section {
+    min-height: 100vh;
+    padding: 8rem 9% 2rem; /* Adjusted padding for all sections */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Hidden by default for scroll animation */
+    transform: translateY(50px); /* Start slightly below */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.show-animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.heading {
+    font-size: 4.5rem;
+    text-align: center;
+    margin-bottom: 5rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.heading span {
+    color: var(--main-color);
+}
+
+/* Home section styling */
+.home {
+    flex-direction: row; /* Default for desktop */
+    gap: 8rem;
+    background: var(--bg-color);
+}
+
+.home .home-content h1 {
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1.2; /* Adjusted line height */
+    margin-bottom: 1rem;
+}
+
+.home-content h3 {
+    font-size: 3.8rem; /* Adjusted font size */
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.home-img {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 350px; /* Fixed size for consistency */
+    height: 350px;
+    box-shadow: 0 0 25px var(--main-color), 0 0 50px var(--main-color);
+    transition: all 0.5s ease;
+}
+
+.home-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 0.5rem solid var(--main-color);
+    transition: transform 0.4s ease;
+}
+
+.home-img:hover {
+    box-shadow: 0 0 50px var(--accent-color), 0 0 100px var(--accent-color);
+}
+
+.home-img img:hover {
+    transform: scale(1.02);
+}
+
+.home-content p {
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-bottom: 3rem;
+    max-width: 600px;
+}
+
+/* Social icons styling */
+.social-icon {
+    margin-bottom: 3rem; /* Added margin-bottom here */
+}
+
+.social-icon a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4.5rem; /* Slightly larger */
+    height: 4.5rem;
+    background: transparent;
+    border: 0.2rem solid var(--main-color);
+    font-size: 2.2rem; /* Slightly larger icon */
+    border-radius: 50%;
+    color: var(--main-color);
+    margin: 0 1.5rem 0 0; /* Adjusted margin */
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon a:hover {
+    color: var(--bg-color);
+    transform: translateY(-0.5rem) scale(1.1); /* Lift and scale effect */
+    background: var(--main-color);
+    box-shadow: 0 0 20px var(--main-color);
+}
+
+/* Button styling */
+.btn {
+    display: inline-block;
+    padding: 1.2rem 3.5rem; /* Adjusted padding */
+    background: var(--main-color); /* Changed default background to main color */
+    border-radius: 4rem;
+    font-size: 1.7rem;
+    color: var(--text-color); /* Text color for button */
+    border: 2px solid var(--main-color);
+    letter-spacing: 0.05rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 0 15px rgba(123, 75, 183, 0.5); /* Soft shadow */
+}
+
+.btn:hover {
+    transform: scale(1.05); /* Slightly larger on hover */
+    background-color: var(--accent-color); /* Lighter shade on hover */
+    color: var(--bg-color);
+    box-shadow: 0 0 25px var(--accent-color);
+}
+
+/* Typing text effect */
+.typing-text {
+    font-size: 3.4rem;
+    font-weight: 600;
+    min-width: 280px; /* Ensure enough space */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow for typing effect */
+}
+
+.typing-text span {
+    position: relative;
+}
+
+/* Cursor animation */
+.typing-text span::after {
+    content: '';
+    position: absolute; /* Keep absolute for positioning */
+    top: 0;
+    right: -3px; /* Position cursor slightly to the right of text */
+    height: 100%;
+    width: 3px; /* Width of the cursor */
+    background: var(--main-color); /* Cursor color */
+    animation: cursorBlink 0.7s infinite; /* Only cursor blinking animation */
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Media queries for home section */
+@media (max-width: 1000px) {
+    .home {
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .home {
+        flex-direction: column;
+        padding: 10rem 5% 5rem; /* Adjusted padding for mobile */
+        text-align: center;
+    }
+
+    .home .home-content h1 {
+        font-size: 5rem;
+    }
+
+    .home-content h3 {
+        font-size: 3rem;
+    }
+
+    .home-img {
+        width: 250px; /* Smaller image on mobile */
+        height: 250px;
+        margin-top: 4rem;
+    }
+
+    .social-icon {
+        margin-top: 2rem;
+    }
+}
+
+/* Services section */
+.services {
+    background-color: var(--second-bg-color);
+    padding-bottom: 8rem; /* Consistent padding */
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 3rem; /* Increased gap */
+    padding: 0 5%; /* Padding for container */
+    width: 100%;
+    max-width: 1200px; /* Max width for content */
+}
+
+.services-box {
+    background-color: var(--second-bg-color); /* Changed to second-bg-color for subtle depth */
+    border: 2px solid var(--main-color); /* Border for definition */
+    border-radius: 1.5rem; /* More rounded corners */
+    padding: 3rem; /* Increased padding */
+    text-align: center;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(123, 75, 183, 0.2);
+    display: flex; /* Use flex for content alignment */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.services-box:hover {
+    background: var(--main-color); /* Main color on hover */
+    color: var(--bg-color); /* Dark text on hover */
+    transform: translateY(-10px) scale(1.02); /* Lift and slight scale */
+    box-shadow: 0 0 25px var(--main-color);
+}
+
+.services-box .services-info {
+    text-align: center;
+    /* Removed flex properties as services-box is already flex */
+}
+
+.services-info h4 {
+    font-size: 2.8rem; /* Larger heading */
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--text-color); /* Ensure text color is visible */
+}
+
+.services-box:hover .services-info h4 {
+    color: var(--bg-color); /* Dark text on hover */
+}
+
+.services-info p {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--text-color);
+}
+
+.services-box:hover .services-info p {
+    color: var(--bg-color); /* Dark text on hover */
+}
+
+/* Media queries for services section */
+@media (max-width: 895px) {
+    .services-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust for smaller screens */
+    }
+}
+
+/* Projects Section */
+.projects {
+    background-color: var(--bg-color); /* Alternating background */
+    padding-bottom: 8rem;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    padding: 0 5%;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.project-box {
+    background-color: var(--second-bg-color);
+    border-radius: 1.5rem;
+    overflow: hidden; /* Hide overflowing images/content */
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 2rem rgba(123, 75, 183, 0.4);
+}
+
+.project-box img {
+    width: 100%;
+    height: 200px; /* Fixed height for project images */
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-box:hover img {
+    transform: scale(1.05);
+}
+
+.project-content {
+    padding: 2.5rem;
+    flex-grow: 1; /* Allow content to take available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-content h4 {
+    font-size: 2.5rem;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.project-content p {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.project-content .technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.project-content .technologies span {
+    background-color: rgba(123, 75, 183, 0.2);
+    color: var(--main-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.project-links {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: auto; /* Push links to the bottom */
+}
+
+.project-links .btn {
+    flex: 1; /* Make buttons take equal width */
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+    background: var(--main-color);
+    color: var(--text-color);
+    border: 2px solid var(--main-color);
+    border-radius: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.project-links .btn:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-color);
+    transform: scale(1.02);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+/* Media queries for projects section */
+@media (max-width: 768px) {
+    .projects-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+/* Skills section */
+.skills {
+    background: var(--bg-color);
+    padding-bottom: 8rem;
+}
+
+.skills .container {
+    background: var(--second-bg-color); /* Changed background for consistency */
+    color: var(--text-color);
+    border-radius: 1.5rem; /* More rounded */
+    padding: 3rem; /* Increased padding */
+    width: 80%; /* Adjusted width */
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.skills .container .row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive grid for skills */
+    gap: 2rem; /* Increased gap */
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+}
+
+.skills .container .bar {
+    padding: 1.5rem; /* Adjusted padding */
+    border-radius: 1rem;
+    background: var(--main-color); /* Main color for skill boxes */
+    box-shadow: 0 4px 15px rgba(123, 75, 183, 0.4);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 180px; /* Fixed height for consistency */
+}
+
+.skills .container .bar:hover {
+    box-shadow: 0 4px 25px var(--accent-color);
+    transform: translateY(-8px) scale(1.03);
+    background: var(--accent-color); /* Lighter shade on hover */
+}
+
+.skills .container .bar .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Styling for skill icons */
+.skills .container .bar .info i {
+    font-size: 6rem; /* Size of the icon */
+    color: var(--bg-color); /* Icon color */
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.skills .container .bar:hover .info i {
+    color: var(--bg-color); /* Keep icon color same on hover */
+}
+
+.skills .container .bar .info span {
+    font-size: 1.8rem; /* Adjusted font size */
+    font-weight: 500;
+    color: var(--bg-color); /* Dark text for readability on main-color background */
+    margin-top: 0.5rem;
+}
+
+.skills .container .bar:hover .info span {
+    color: var(--bg-color); /* Keep dark text on hover */
+}
+
+/* Media queries for skills section */
+@media screen and (max-width: 600px) {
+    .skills .container {
+        width: 95%; /* Full width on small screens */
+        padding: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .skills .container .row {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Smaller grid items */
+        gap: 1.5rem;
+    }
+
+    .skills .container .bar {
+        height: 150px; /* Smaller height */
+        padding: 1rem;
+    }
+
+    .skills .container .bar .info i {
+        font-size: 5rem; /* Adjust icon size for smaller screens */
+    }
+
+    .skills .container .bar .info span {
+        font-size: 1.6rem;
+    }
+}
+
+/* Education Section */
+.education {
+    background: var(--second-bg-color);
+    padding-bottom: 8rem;
+}
+
+.university-name{
+    font-size: large;
+}
+
+.education .timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.education .timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background: var(--main-color); /* Timeline line color */
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    z-index: 0; /* Behind containers */
+}
+
+.education .container {
+    padding: 1rem 4rem; /* Adjusted padding */
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+/* Base icon styling for all education entries */
+.education .container::after {
+    font-family: "Font Awesome 5 Free"; /* Ensure Font Awesome is used */
+    font-weight: 900; /* For solid icons */
+    position: absolute;
+    width: 3.5rem; /* Larger icon size */
+    height: 3.5rem;
+    line-height: 3.5rem; /* Center icon vertically */
+    background-color: var(--text-color); /* White background for icon */
+    border: 4px solid var(--main-color);
+    top: 1.5rem; /* Adjusted top position */
+    border-radius: 50%;
+    z-index: 1; /* On top of timeline line */
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--main-color); /* Icon color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific icons for each education entry */
+.education .university-degree-entry::after {
+    content: '\f19c'; /* fa-solid fa-university */
+}
+
+.education .internship-entry::after {
+    content: '\f0b1'; /* fa-solid fa-briefcase */
+}
+
+.education .diploma-entry::after {
+    content: '\f0a3'; /* fa-solid fa-certificate */
+}
+
+.education .secondary-entry::after {
+    content: '\f549'; /* fa-solid fa-school */
+}
+
+/* New: Work Experience Icon */
+.education .work-experience-entry::after {
+    content: '\f1ad'; /* fa-solid fa-building */
+}
+
+
+.education .left {
+    left: 0;
+    padding-right: 6rem; /* Space for icon and arrow */
+}
+
+.education .right {
+    left: 50%; /* Position right containers to the right of the timeline */
+    padding-left: 6rem; /* Space for icon and arrow */
+}
+
+.education .left::before {
+    content: '';
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 2.2rem;
+    right: 3rem; /* Position arrow on the right side of left container */
+    z-index: 1;
+    border: medium solid var(--main-color);
+    border-width: 1rem 0 1rem 1rem; /* Arrow pointing right */
+    border-color: transparent transparent transparent var(--main-color);
+}
+
+.education .right::before {
+    content: '';
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 2.2rem;
+    left: 3rem; /* Position arrow on the left side of right container */
+    z-index: 1;
+    border: medium solid var(--main-color);
+    border-width: 1rem 1rem 1rem 0; /* Arrow pointing left */
+    border-color: transparent var(--main-color) transparent transparent;
+}
+
+.education .right::after {
+    left: -1.7rem; /* Position icon on the left of right container */
+}
+
+.education .left::after {
+    right: -1.7rem; /* Position icon on the right of left container */
+}
+
+.education .content {
+    padding: 2rem 3rem; /* Adjusted padding */
+    background-color: var(--bg-color);
+    position: relative;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.education .container:hover .content {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px var(--main-color);
+}
+
+.education .content .tag {
+    margin-bottom: 1rem;
+}
+
+.education .content .tag h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--main-color); /* Main color for headings */
+    text-align: left; /* Align text left */
+}
+
+.education .content .desc p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.education .left {
+    left: 0;
+    padding-right: 6rem; /* Space for icon and arrow */
+}
+
+.education .right {
+    left: 50%; /* Position right containers to the right of the timeline */
+    padding-left: 6rem; /* Space for icon and arrow */
+}
+
+.education .left::before {
+    content: '';
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 2.2rem;
+    right: 3rem; /* Position arrow on the right side of left container */
+    z-index: 1;
+    border: medium solid var(--main-color);
+    border-width: 1rem 0 1rem 1rem; /* Arrow pointing right */
+    border-color: transparent transparent transparent var(--main-color);
+}
+
+.education .right::before {
+    content: '';
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 2.2rem;
+    left: 3rem; /* Position arrow on the left side of right container */
+    z-index: 1;
+    border: medium solid var(--main-color);
+    border-width: 1rem 1rem 1rem 0; /* Arrow pointing left */
+    border-color: transparent var(--main-color) transparent transparent;
+}
+
+.education .right::after {
+    left: -1.7rem; /* Position icon on the left of right container */
+}
+
+.education .left::after {
+    right: -1.7rem; /* Position icon on the right of left container */
+}
+
+.education .content {
+    padding: 2rem 3rem; /* Adjusted padding */
+    background-color: var(--bg-color);
+    position: relative;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.education .container:hover .content {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px var(--main-color);
+}
+
+.education .content .tag {
+    margin-bottom: 1rem;
+}
+
+.education .content .tag h2 {
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: var(--main-color); /* Main color for headings */
+    text-align: left; /* Align text left */
+}
+
+.education .content .desc p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+/* Media queries for education section */
+@media screen and (max-width: 768px) {
+    .education .timeline::after {
+        left: 31px; /* Move timeline line to left */
+    }
+
+    .education .container {
+        width: 100%;
+        padding-left: 8rem; /* Space for line and icon */
+        padding-right: 1.5rem;
+    }
+
+    .education .container::before {
+        left: 61px; /* Position arrow on the left */
+        border-width: 1rem 1rem 1rem 0; /* Arrow pointing left */
+        border-color: transparent var(--main-color) transparent transparent;
+    }
+
+    .education .left::after,
+    .education .right::after {
+        left: 15px; /* Position icon on the left */
+    }
+
+    .education .right {
+        left: 0%; /* Stack right containers below left */
+    }
+}
+
+/* Contact section */
+.contact {
+    background-color: var(--bg-color);
+    padding-bottom: 8rem;
+}
+
+.contact form {
+    max-width: 80rem; /* Increased max-width */
+    margin: 0 auto; /* Center the form */
+    text-align: center;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background-color: var(--second-bg-color);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.contact form .input-box {
+    display: flex;
+    justify-content: space-between; /* Space out inputs */
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.contact form .input-box input,
+.contact form textarea {
+    width: 49%; /* Two inputs per row */
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--bg-color);
+    border-radius: 0.8rem;
+    border: 2px solid var(--main-color);
+    margin-bottom: 1.5rem; /* Space between rows */
+    resize: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact form .input-box input:focus,
+.contact form textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(123, 75, 183, 0.5);
+}
+
+.contact form textarea {
+    width: 100%; /* Full width for textarea */
+    min-height: 15rem; /* Minimum height */
+    margin-bottom: 2rem;
+}
+
+.contact form .btn {
+    margin-top: 0; /* Button styling handled by general .btn */
+}
+
+/* Media queries for contact section */
+@media (max-width: 768px) {
+    .contact form .input-box input {
+        width: 100%; /* Stack inputs on small screens */
+    }
+}
+
+/* Footer section */
+.footer {
+    position: relative;
+    width: 100%;
+    padding: 4rem 9%; /* Adjusted padding */
+    background-color: var(--main-color);
+    color: var(--bg-color); /* Dark text on main-color background */
+    text-align: center;
+    box-shadow: 0 -0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.footer .social {
+    padding-bottom: 2.5rem;
+}
+
+.footer .social a {
+    font-size: 2.5rem;
+    color: var(--bg-color); /* Dark icons */
+    border: 2px solid var(--bg-color);
+    width: 4.2rem;
+    height: 4.2rem;
+    display: inline-flex; /* Use inline-flex for centering */
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 0 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.footer .social a:hover {
+    transform: translateY(-0.5rem) scale(1.1);
+    background: var(--bg-color);
+    color: var(--main-color);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.footer ul {
+    list-style: none; /* Remove bullet points */
+    margin-top: 0;
+    padding: 0;
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.footer ul li {
+    display: inline-block;
+    padding: 0 1.5rem;
+}
+
+.footer ul li a {
+    color: var(--bg-color);
+    border-bottom: 3px solid transparent;
+    transition: 0.3s ease;
+    text-decoration: none;
+}
+
+.footer ul li a:hover {
+    border-bottom: 3px solid var(--bg-color);
+}
+
+.footer .copyright {
+    margin-top: 3rem; /* Adjusted margin */
+    font-size: 1.5rem;
+    color: var(--bg-color);
+    font-weight: 400;
+}
+
+/* General media queries */
+@media (max-width: 1285px) {
+    html {
+        font-size: 58%; /* Adjust base font size */
+    }
+}
+
+@media (max-width: 991px) {
+    section {
+        padding: 8rem 5% 2rem; /* Adjusted section padding */
+    }
+    .footer {
+        padding: 3rem 5%; /* Adjusted footer padding */
+    }
+}
