@@ -534,6 +534,14 @@ section.show-animate {
     font-weight: 500;
 }
 
+.project-content .technologies .text-green {
+    color: green;
+}
+
+.project-content .technologies .text-red {
+    color: red;
+}
+
 .project-links {
     display: flex;
     justify-content: space-between;
@@ -560,6 +568,7 @@ section.show-animate {
     transform: scale(1.02);
     box-shadow: 0 0 15px var(--accent-color);
 }
+
 
 /* Media queries for projects section */
 @media (max-width: 768px) {

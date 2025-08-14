@@ -223,3 +223,15 @@ function showCustomAlert(message) {
         }
     });
 }
+
+document.getElementById("downloadResume").addEventListener("click", function (event) {
+    event.preventDefault(); // Stop default link behavior
+
+    // Create a temporary invisible link for download
+    const link = document.createElement("a");
+    link.href = "Resume.pdf"; // Path to your file
+    link.download = "Krishna_Prasad_Resume.pdf"; // Suggested filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
