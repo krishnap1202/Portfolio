@@ -50,7 +50,7 @@ document.querySelectorAll('header nav a').forEach(anchor => {
 
 // 3. Typing Effect for Home Section
 const typingTextSpan = document.querySelector('.typing-text span');
-const words = ['UI/UX Designer', 'Web Designer', 'Youtuber', 'Gamer'];
+const words = ['Web Developer', 'Software Developer', 'UI/UX Designer', 'Youtuber', 'Gamer'];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
