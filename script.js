@@ -50,7 +50,7 @@ document.querySelectorAll('header nav a').forEach(anchor => {
 
 // 3. Typing Effect for Home Section
 const typingTextSpan = document.querySelector('.typing-text span');
-const words = ['Web Developer', 'Software Developer', 'UI/UX Designer', 'Youtuber', 'Gamer'];
+const words = ['UI/UX Designer', 'Web Designer', 'Youtuber', 'Gamer'];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -118,12 +118,13 @@ contactForm.addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent actual form submission and redirection
 
     const form = e.target;
+    // Get the name for the custom alert message
     const name = form.querySelector('input[name="name"]').value;
     
     // Create a data object from the form elements
     const formData = new FormData(form);
 
-    // Send data to FormSubmit AJAX endpoint
+    // Send data to FormSubmit AJAX endpoint. Use /ajax/ to avoid redirection.
     fetch('https://formsubmit.co/ajax/krishnaprasad2819@gmail.com', {
         method: 'POST',
         body: formData
@@ -136,8 +137,11 @@ contactForm.addEventListener('submit', function(e) {
             form.reset();
         } else {
             // Handle HTTP error statuses
+            // Try to read JSON error message if available
             return response.json().then(data => {
                 showCustomAlert(`Oops! Something went wrong: ${data.message || 'Please try again later.'}`);
+            }).catch(() => {
+                 showCustomAlert(`Oops! Something went wrong on the server. Please try again later.`);
             });
         }
     })
@@ -150,6 +154,11 @@ contactForm.addEventListener('submit', function(e) {
 
 // Custom Alert Function (replaces window.alert)
 function showCustomAlert(message) {
+    // Check if the alert box already exists to avoid duplication
+    if (document.querySelector('.custom-alert')) {
+        return; 
+    }
+
     const alertBox = document.createElement('div');
     alertBox.classList.add('custom-alert');
     alertBox.innerHTML = `
@@ -160,7 +169,7 @@ function showCustomAlert(message) {
     `;
     document.body.appendChild(alertBox);
 
-    // Style the custom alert
+    // Style the custom alert (keeping your original styling logic)
     const style = document.createElement('style');
     style.innerHTML = `
         .custom-alert {
@@ -222,19 +231,26 @@ function showCustomAlert(message) {
     // Close button functionality
     alertBox.querySelector('.custom-alert-close').addEventListener('click', () => {
         alertBox.classList.remove('show');
+        // Clean up the alert box and style tag after transition
         setTimeout(() => {
             document.body.removeChild(alertBox);
-            document.head.removeChild(style); // Clean up style tag
-        }, 300); // Wait for fade out
+            // Remove the style tag if it still exists (to prevent leaks)
+            if (style.parentNode) {
+                document.head.removeChild(style);
+            }
+        }, 300); 
     });
 
     // Close on outside click
     alertBox.addEventListener('click', (e) => {
         if (e.target === alertBox) {
             alertBox.classList.remove('show');
+            // Clean up the alert box and style tag after transition
             setTimeout(() => {
                 document.body.removeChild(alertBox);
-                document.head.removeChild(style);
+                if (style.parentNode) {
+                    document.head.removeChild(style);
+                }
             }, 300);
         }
     });
