@@ -112,25 +112,41 @@ sections.forEach(section => {
 });
 
 
-// 5. Form Submission (Basic)
+// 5. Form Submission (Updated to use FormSubmit AJAX)
 const contactForm = document.getElementById('contactForm');
 contactForm.addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent actual form submission
+    e.preventDefault(); // Prevent actual form submission and redirection
 
-    // In a real application, you would send this data to a server
-    // For now, we'll just show a success message.
-    const name = this.querySelector('input[name="name"]').value;
-    const email = this.querySelector('input[name="email"]').value;
-    const phone = this.querySelector('input[name="phone"]').value;
-    const subject = this.querySelector('input[name="subject"]').value;
-    const message = this.querySelector('textarea[name="message"]').value;
+    const form = e.target;
+    const name = form.querySelector('input[name="name"]').value;
+    
+    // Create a data object from the form elements
+    const formData = new FormData(form);
 
-    // Display a custom alert/modal instead of window.alert
-    showCustomAlert(`Thank you, ${name}! Your message has been sent. We will get back to you shortly.`);
-
-    // Clear the form
-    this.reset();
+    // Send data to FormSubmit AJAX endpoint
+    fetch('https://formsubmit.co/ajax/krishnaprasad2819@gmail.com', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            // Display custom success message
+            showCustomAlert(`Thank you, ${name}! Your message has been sent. We will get back to you shortly.`);
+            // Clear the form
+            form.reset();
+        } else {
+            // Handle HTTP error statuses
+            return response.json().then(data => {
+                showCustomAlert(`Oops! Something went wrong: ${data.message || 'Please try again later.'}`);
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Submission error:', error);
+        showCustomAlert(`Network error: Could not send message. Please check your connection.`);
+    });
 });
+
 
 // Custom Alert Function (replaces window.alert)
 function showCustomAlert(message) {
